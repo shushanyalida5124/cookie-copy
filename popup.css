@@ -1,0 +1,43 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+}
+.row {
+  display: flex;
+  margin-top: 8px;
+  width: 300px;
+}
+.row.center {
+  justify-content: center;
+}
+.row .label {
+  margin-right: 8px;
+}
+select {
+  max-width: 200px;
+  color: lightcoral;
+}
+.cookie {
+  position: relative;
+  padding-left: 20px;
+  max-height: 1000px;
+}
+.cookie .cookie-checkbox {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.cookieList .cookie .cookie-name {
+  color: blue;
+  width: 200px;
+  margin-top: 5px;
+}
+.cookieList .cookie .cookie-value {
+  color: green;
+  width: 200px;
+  margin-top: 5px;
+}

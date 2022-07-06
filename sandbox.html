@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+
+  <div id="content">
+    <div class="row">
+      <span class="label">url:</span>
+      <select id="urlSelect" v-model="store.selectedUrl" @change="store.onUrlChange">
+        <option v-for="(value) in store.urls" :key="value" :value="value">{{value}}</option>
+      </select>
+    </div>
+    <div class="row center">
+      <button id="copy-btn" @click="store.onCopyBtnClick">复制</button>
+    </div>
+    <!-- <div class="row center">
+      <span class="tips" id="tips">{{ store.tips }}</span>
+    </div> -->
+    <div class="cookieList">
+      <div class="cookie" v-for="cookie in store.cookies">
+        <input type="checkbox" class="cookie-checkbox" v-model="cookie.selected">
+        <input type="input" class="cookie-name" v-model="cookie.name"></input>
+        <textarea class="cookie-value" v-model="cookie.value"></textarea>
+      </div>
+    </div>
+  </div>
+  <script src="./js/sandbox.js" type="module"></script>
+</body>
+</html>
