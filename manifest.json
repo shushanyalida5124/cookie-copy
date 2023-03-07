@@ -1,18 +1,21 @@
 {
   "manifest_version": 3,
-	"name": "Cookie-copy",
-	"version": "0.0.1",
-	"permissions": [
-		"cookies",
-		"tabs",
-		"storage"
-	],
+  "name": "Cookie-copy",
+  "version": "0.0.1",
+  "permissions": [
+    "cookies",
+    "tabs"
+  ],
   "action": {
     "default_popup": "popup.html"
   },
-  "host_permissions": ["<all_urls>"],
-	"sandbox": {
-    "pages": ["sandbox.html"]
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "sandbox": {
+    "pages": [
+      "sandbox.html"
+    ]
   },
   "icons": {
     "16": "images/16.png",
