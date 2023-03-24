@@ -14,7 +14,7 @@ setTimeout(() => {
 window.addEventListener('message', async (e) => {
   const data = e.data;
   const type = data.type;
-  switch(type) {
+  switch (type) {
     case 'urlChange':
       chrome.cookies.getAll({
         url: data.url,
@@ -32,11 +32,11 @@ window.addEventListener('message', async (e) => {
       });
       break;
     case 'copyBtnClick':
-      const cookies =JSON.parse(data.cookies);
-      const [{url}] = await chrome.tabs.query({ active: true, currentWindow: true });
-      cookies.forEach(({name, value}) => {
+      const cookies = JSON.parse(data.cookies);
+      const [{ url }] = await chrome.tabs.query({ active: true, currentWindow: true });
+      cookies.forEach(({ name, value }) => {
         chrome.cookies.set({
-          name, url, value,
+          name, url, value, path: '/'
         })
       });
     default:
