@@ -16,7 +16,7 @@
       </select>
     </div>
     <div class="row center">
-      <button id="copy-btn" @click="store.onCopyBtnClick">复制</button>
+      <button id="copy-btn" @click="store.onCopyBtnClick" title="Copy the selected cookies to this page">Copy</button>
     </div>
     <!-- <div class="row center">
       <span class="tips" id="tips">{{  }}</span>
@@ -28,8 +28,8 @@
         <button
           @dblclick="store.handleDelete(cookie)"
           :disabled="store.selectedUrl !== store.currentUrl"
-          :title="store.selectedUrl === store.currentUrl ? '' : 'Only the current page cookie can be deleted'"
-          >双击删除</button>
+          :title="store.selectedUrl === store.currentUrl ? 'Doubleclick to delete!' : 'Only the current page cookie can be deleted'"
+          >Delete</button>
         <textarea class="cookie-value" v-model="cookie.value"></textarea>
       </div>
     </div>
