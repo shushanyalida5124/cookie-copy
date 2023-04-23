@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="popup.css">
 </head>
 <body>
-
   <div id="content">
     <div class="row">
       <span class="label">url:</span>
@@ -20,12 +19,17 @@
       <button id="copy-btn" @click="store.onCopyBtnClick">复制</button>
     </div>
     <!-- <div class="row center">
-      <span class="tips" id="tips">{{ store.tips }}</span>
+      <span class="tips" id="tips">{{  }}</span>
     </div> -->
     <div class="cookieList">
       <div class="cookie" v-for="cookie in store.cookies">
         <input type="checkbox" class="cookie-checkbox" v-model="cookie.selected">
         <input type="input" class="cookie-name" v-model="cookie.name"></input>
+        <button
+          @dblclick="store.handleDelete(cookie)"
+          :disabled="store.selectedUrl !== store.currentUrl"
+          :title="store.selectedUrl === store.currentUrl ? '' : 'Only the current page cookie can be deleted'"
+          >双击删除</button>
         <textarea class="cookie-value" v-model="cookie.value"></textarea>
       </div>
     </div>

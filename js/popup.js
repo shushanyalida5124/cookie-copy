@@ -3,14 +3,13 @@ const tabs = await chrome.tabs.query({
 });
 const urls = new Set(tabs.map((tab) => tab.url));
 const sandbox = document.getElementById('sandbox');
+const [{ url }] = await chrome.tabs.query({ active: true, currentWindow: true });
+
+chrome.tabs.onActivated.addListener(init);
 
 setTimeout(() => {
-  sandbox.contentWindow.postMessage({
-    urls,
-    type: 'init'
-  }, '*');
+  init();
 }, 100);
-
 window.addEventListener('message', async (e) => {
   const data = e.data;
   const type = data.type;
@@ -33,13 +32,29 @@ window.addEventListener('message', async (e) => {
       break;
     case 'copyBtnClick':
       const cookies = JSON.parse(data.cookies);
-      const [{ url }] = await chrome.tabs.query({ active: true, currentWindow: true });
       cookies.forEach(({ name, value }) => {
         chrome.cookies.set({
           name, url, value, path: '/'
         })
       });
+      break;
+    case 'deleteCookie':
+      const cookie = JSON.parse(data.cookie);
+      chrome.cookies.remove({
+        name: cookie.name,
+        url,
+      });
+      init();
+      break;
     default:
       break;
   }
 });
+
+async function init() {
+  sandbox.contentWindow.postMessage({
+    urls,
+    type: 'init',
+    url,
+  }, '*');
+}
